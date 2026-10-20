@@ -1,5 +1,5 @@
 
-const API_URL = "http://localhost:3001/api/clubs";
+const API_URL = "https://ict251-crud-53x7.onrender.com/api/clubs";
 
 const clubForm = document.getElementById("clubForm");
 const clubTableBody = document.getElementById("clubsTableBody");
