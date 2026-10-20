@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusHub | Club Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-shell">
+
+        <aside class="sidebar">
+            <a href="#" class="brand">
+                <span class="brand-icon">C</span>
+                <span>
+                    <strong>CampusHub</strong>
+                    <small>CLUB MANAGEMENT</small>
+                </span>
+            </a>
+
+            <p class="nav-heading">WORKSPACE</p>
+            <nav class="navigation">
+                <a href="#dashboard" class="nav-link active">
+                    <span>▦</span> Dashboard
+                </a>
+                <a href="#clubs" class="nav-link">
+                    <span>♧</span> Club Directory
+                </a>
+                <a href="#club-form" class="nav-link">
+                    <span>＋</span> Add a Club
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span class="status-dot"></span>
+                <span>Campus services</span>
+                <small>ICT251</small>
+            </div>
+        </aside>
+
+        <main class="main-content" id="dashboard">
+
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">MULUNGUSHI UNIVERSITY</p>
+                    <h1>Club Directory</h1>
+                    <p class="page-subtitle">
+                        Discover, organise and manage campus clubs.
+                    </p>
+                </div>
+
+                <div class="profile">
+                    <div class="profile-avatar">CH</div>
+                    <div>
+                        <strong>Administrator</strong>
+                        <small>Club management</small>
+                    </div>
+                </div>
+            </header>
+
+            <section class="welcome-banner">
+                <div>
+                    <span class="welcome-label">CAMPUS COMMUNITY</span>
+                    <h2>Every club. One place.</h2>
+                    <p>
+                        Keep your campus community organised with a
+                        simple, central club directory.
+                    </p>
+                </div>
+                <div class="banner-icon">✦</div>
+            </section>
+
+            <section class="stats-grid">
+                <article class="stat-card">
+                    <div class="stat-icon green">♧</div>
+                    <p>Total clubs</p>
+                    <h2 id="clubCount">0</h2>
+                    <small>Registered campus clubs</small>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon blue">⌘</div>
+                    <p>Database</p>
+                    <h2 class="stat-word">SQLite</h2>
+                    <small>Local data storage</small>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon purple">↔</div>
+                    <p>API status</p>
+                    <h2 class="stat-word" id="apiStatus">Checking...</h2>
+                    <small>Connection to the backend</small>
+                </article>
+            </section>
+
+            <section class="content-card" id="clubs">
+                <div class="section-header">
+                    <div>
+                        <p class="eyebrow">CAMPUS COMMUNITY</p>
+                        <h2>Registered clubs</h2>
+                        <p class="muted">
+                            View and manage the clubs in your database.
+                        </p>
+                    </div>
+
+                    <button class="primary-button" id="addClubButton"
+                            type="button">
+                        + Add new club
+                    </button>
+                </div>
+
+                <div class="table-toolbar">
+                    <div class="search-box">
+                        <span>⌕</span>
+                        <input type="search" id="searchInput"
+                               placeholder="Search clubs...">
+                    </div>
+                    <span id="recordCount" class="record-count">
+                        0 records
+                    </span>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>CLUB</th>
+                                <th>CATEGORY</th>
+                                <th>MEETING DAY</th>
+                                <th>CONTACT EMAIL</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clubsTableBody">
+                            <tr>
+                                <td colspan="5" class="empty-state">
+                                    Loading club records...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p id="tableMessage" class="table-message"
+                   aria-live="polite"></p>
+            </section>
+
+            <section class="content-card form-card" id="club-form">
+                <div class="section-header">
+                    <div>
+                        <p class="eyebrow">CLUB DETAILS</p>
+                        <h2 id="formTitle">Register a new club</h2>
+                        <p class="muted">
+                            Enter the details below to save a club.
+                        </p>
+                    </div>
+                </div>
+
+                <form id="clubForm">
+                    <input type="hidden" id="clubId">
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Club name *</label>
+                            <input type="text" id="name" maxlength="120"
+                                   placeholder="e.g. Computing Club"
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category *</label>
+                            <select id="category" required>
+                                <option value="">Choose a category</option>
+                                <option>Academic</option>
+                                <option>Technology</option>
+                                <option>Sports</option>
+                                <option>Arts and Culture</option>
+                                <option>Community Service</option>
+                                <option>Business</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="description">Description</label>
+                            <textarea id="description" rows="3"
+                                placeholder="What is this club about?"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="meeting_day">Meeting day</label>
+                            <select id="meeting_day">
+                                <option value="">Choose a day</option>
+                                <option>Monday</option>
+                                <option>Tuesday</option>
+                                <option>Wednesday</option>
+                                <option>Thursday</option>
+                                <option>Friday</option>
+                                <option>Saturday</option>
+                                <option>Sunday</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact_email">Contact email</label>
+                            <input type="email" id="contact_email"
+                                   placeholder="club@university.edu">
+                        </div>
+                    </div>
+
+                    <p class="form-note">* Required fields</p>
+
+                    <div class="form-actions">
+                        <button type="button" class="secondary-button"
+                                id="cancelEditButton">
+                            Clear form
+                        </button>
+                        <button type="submit" class="primary-button"
+                                id="saveButton">
+                            Save club
+                        </button>
+                    </div>
+
+                    <p id="formMessage" aria-live="polite"></p>
+                </form>
+            </section>
+
+            <footer class="page-footer">
+                <span>CampusHub · ICT251 Web Technologies</span>
+                <span>Campus Club Management System</span>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+
+test.html
+**/node_modules/
+**/.env
+**/campus.db
+**/campus.db-shm
+**/campus.db-wal
